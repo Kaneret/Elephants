@@ -1,0 +1,6 @@
+C:\Users\Олег\Documents\Visual Studio 2015\Projects\Elephants\Elephants\bin\Debug\Elephants.exe.config
+C:\Users\Олег\Documents\Visual Studio 2015\Projects\Elephants\Elephants\obj\Debug\Elephants.exe
+C:\Users\Олег\Documents\Visual Studio 2015\Projects\Elephants\Elephants\obj\Debug\Elephants.pdb
+C:\Users\Олег\Documents\Visual Studio 2015\Projects\Elephants\Elephants\bin\Debug\Elephants.exe
+C:\Users\Олег\Documents\Visual Studio 2015\Projects\Elephants\Elephants\bin\Debug\Elephants.pdb
+C:\Users\Олег\Documents\Visual Studio 2015\Projects\Elephants\Elephants\obj\Debug\Elephants.csprojResolveAssemblyReference.cache
