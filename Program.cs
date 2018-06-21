@@ -25,17 +25,13 @@ namespace Elephants
             cells = new Field[n, n];
             SetEmptyBoard(n);///n^2
 
-            ///не обязательно, потому что всё равно 
-            ///будет обозначена на следующем этапе 
-            ///cells[x, y] = Field.FIGURE;
+            ushort specularX = x > ((n / 2) - 1) ? //
+                (ushort)(Math.Abs(x - (n / 2))) :
+                (ushort)(Math.Abs(x - ((n / 2) - 1)));
 
-            int specularX = x > ((n / 2) - 1) ? //
-                (Math.Abs(x - (n / 2))) :
-                (Math.Abs(x - ((n / 2) - 1)));
-
-            int specularY = y > ((n / 2) - 1) ? //
-                (Math.Abs(y - (n / 2))) :
-                (Math.Abs(y - ((n / 2) - 1)));
+            ushort specularY = y > ((n / 2) - 1) ? //
+                (ushort)(Math.Abs(y - (n / 2))) :
+                (ushort)(Math.Abs(y - ((n / 2) - 1)));
 
             ///(n^2 * 2^(3/2)) + (n^2 * 2^(3/2))
             if (specularX > specularY)                                 //горизонталь
@@ -50,40 +46,27 @@ namespace Elephants
                     cells[i, y] = Field.FIGURE;
                     CaptureDiagonals(n, i, y);
                 }
-                //for (ushort i = 0; i < n; i++)/// n^2 * 2^(3/2)
-                //{
-                //    if (cells[i, y] == Field.FIGURE)
-                //        CaptureDiagonals(n, i, y);
-                //}
                 if (y < 4)
                 {
                     for (ushort i = 0; i < n; i++)/// n^2 * 2^(3/2)
                     {
                         if (cells[i, y] == Field.FIGURE)
+                        {
                             cells[i, y + 2 * specularY + 1] = Field.FIGURE;
-                        if (cells[i, y + 2 * specularY + 1] == Field.FIGURE)
                             CaptureDiagonals(n, i, (ushort)(y + 2 * specularY + 1));
+                        }
                     }
-                    //for (ushort i = 0; i < n; i++)/// n^2 * 2^(3/2)
-                    //{
-                    //    if (cells[i, y + 2 * specularY + 1] == Field.FIGURE)
-                    //        CaptureDiagonals(n, i, (ushort)(y + 2 * specularY + 1));
-                    //}
                 }
                 else
                 {
                     for (ushort i = 0; i < n; i++)/// n^2 * 2^(3/2)
                     {
                         if (cells[i, y] == Field.FIGURE)
+                        {
                             cells[i, y - 2 * specularY - 1] = Field.FIGURE;
-                        if (cells[i, y - 2 * specularY - 1] == Field.FIGURE)
                             CaptureDiagonals(n, i, (ushort)(y - 2 * specularY - 1));
+                        }
                     }
-                    //for (ushort i = 0; i < n; i++)/// n^2 * 2^(3/2)
-                    //{
-                    //    if (cells[i, y - 2 * specularY - 1] == Field.FIGURE)
-                    //        CaptureDiagonals(n, i, (ushort)(y - 2 * specularY - 1));
-                    //}
                 }
             }
             else if (specularY >= specularX)                                //вертикаль
@@ -98,40 +81,27 @@ namespace Elephants
                     cells[x, j] = Field.FIGURE;
                     CaptureDiagonals(n, x, j);
                 }
-                //for (ushort j = 0; j < n; j++)/// n^2 * 2^(3/2)
-                //{
-                //    if (cells[x, j] == Field.FIGURE)
-                //        CaptureDiagonals(n, x, j);
-                //}
                 if (x < 4)
                 {
                     for (ushort j = 0; j < n; j++)/// n^2 * 2^(3/2)
                     {
                         if (cells[x, j] == Field.FIGURE)
+                        {
                             cells[x + 2 * specularX + 1, j] = Field.FIGURE;
-                        if (cells[x + 2 * specularX + 1, j] == Field.FIGURE)
                             CaptureDiagonals(n, (ushort)(x + 2 * specularX + 1), j);
+                        }
                     }
-                    //for (ushort j = 0; j < n; j++)/// n^2 * 2^(3/2)
-                    //{
-                    //    if (cells[x + 2 * specularX + 1, j] == Field.FIGURE)
-                    //        CaptureDiagonals(n, (ushort)(x + 2 * specularX + 1), j);
-                    //}
                 }
                 else
                 {
                     for (ushort j = 0; j < n; j++)/// n^2 * 2^(3/2)
                     {
                         if (cells[x, j] == Field.FIGURE)
+                        {
                             cells[x - 2 * specularX - 1, j] = Field.FIGURE;
-                        if (cells[x - 2 * specularX - 1, j] == Field.FIGURE)
                             CaptureDiagonals(n, (ushort)(x - 2 * specularX - 1), j);
+                        }
                     }
-                    //for (ushort j = 0; j < n; j++)/// n^2 * 2^(3/2)
-                    //{
-                    //    if (cells[x - 2 * specularX - 1, j] == Field.FIGURE)
-                    //        CaptureDiagonals(n, (ushort)(x - 2 * specularX - 1), j);
-                    //}
                 }
             }
 
@@ -298,19 +268,5 @@ namespace Elephants
             return true;
         }
 
-        /// <summary>
-        /// не нужно
-        /// </summary>
-        /// <param name="n"></param>
-        static void SetFigureEmpties(int n)
-        {
-            for (int i = 0; i < n; i++)                 ///n^2
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    if (cells[i, j] == Field.EMPTY) cells[i, j] = Field.FIGURE;
-                }
-            }
-        }
     }
 }
